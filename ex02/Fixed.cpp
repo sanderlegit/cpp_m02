@@ -6,7 +6,7 @@
 /*   By: averheij <averheij@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/18 16:12:45 by averheij      #+#    #+#                 */
-/*   Updated: 2021/10/05 16:47:55 by dries               **ee8ee**            */
+/*   Updated: 2021/11/17 13:27:53 by dries               **ee8ee**            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Fixed::Fixed(int const val) {
 
 Fixed::Fixed(float const val) {
 	/* std::cout << "float constructor " << std::endl; */
-	_val=(int)((val*256) + 0.5);
+	_val=(int)(roundf(val * floatFactor()));
 	return;
 }
 
@@ -51,7 +51,7 @@ void		Fixed::setRawBits(int const raw) {
 }
 
 float		Fixed::toFloat(void) const {
-	return (((float)(_val))/256);
+	return (((float)(_val)) / floatFactor());
 }
 
 int			Fixed::toInt(void) const {
@@ -62,6 +62,14 @@ Fixed &		Fixed::operator=(Fixed const & rhs) {
 	/* std::cout << "assignment" << std::endl; */
 	_val = rhs.getRawBits();
 	return *this;
+}
+
+int		Fixed::floatFactor() const {
+	int	pow = 2;
+	int	res = pow;
+	for (int i = 1; i < _fractionalBits; i++)
+		res *= pow;
+	return res;
 }
 
 Fixed   &		Fixed::min(Fixed & lhs, Fixed & rhs) {

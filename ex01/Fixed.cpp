@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Fixed.cpp                                          :+:    :+:            */
+/*   Fixed.cpp                                         e8'   8   '8e          */
 /*                                                     +:+                    */
 /*   By: averheij <averheij@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/18 16:12:45 by averheij      #+#    #+#                 */
-/*   Updated: 2021/01/18 17:39:33 by averheij      ########   odam.nl         */
+/*   Updated: 2021/11/17 13:22:45 by dries               **ee8ee**            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Fixed::Fixed(int const val) {
 
 Fixed::Fixed(float const val) {
 	std::cout << "float constructor " << std::endl;
-	_val=(int)((val*256) + 0.5);
+	_val=(int)(roundf(val * floatFactor()));
 	return;
 }
 
@@ -51,11 +51,11 @@ void		Fixed::setRawBits(int const raw) {
 }
 
 float		Fixed::toFloat(void) const {
-	return (((float)(_val))/256);
+	return (((float)(_val)) / floatFactor());
 }
 
 int			Fixed::toInt(void) const {
-	return (_val >> 8);
+	return (_val >> _fractionalBits);
 }
 
 Fixed &		Fixed::operator=(Fixed const & rhs) {
@@ -67,4 +67,12 @@ Fixed &		Fixed::operator=(Fixed const & rhs) {
 std::ostream &		operator<<(std::ostream & o, Fixed const & f) {
 	o << f.toFloat();
 	return o;
+}
+
+int		Fixed::floatFactor() const {
+	int	pow = 2;
+	int	res = pow;
+	for (int i = 1; i < _fractionalBits; i++)
+		res *= pow;
+	return res;
 }

@@ -6,11 +6,11 @@
 #    By: dries <sanderlegit@gmail.com>                8!   .dWb.   !8          #
 #                                                     Y8 .e* 8 *e. 8P          #
 #    Created: xxxx/xx/xx xx:xx:xx by dries             *8*   8   *8*           #
-#    Updated: 2021/10/05 12:28:29 by dries               **ee8ee**             #
+#    Updated: 2021/11/17 13:12:08 by dries               **ee8ee**             #
 #                                                                              #
 # **************************************************************************** #
 
-EXERCISE	=	EX00
+EXERCISE	=	EX01
 SOURCE 		=	main.cpp Fixed.cpp
 OBJDIR		=	objects
 OFILES		=	$(SOURCE:%.cpp=$(OBJDIR)/%.o)

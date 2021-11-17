@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Fixed.hpp                                          :+:    :+:            */
+/*   Fixed.hpp                                         e8'   8   '8e          */
 /*                                                     +:+                    */
 /*   By: averheij <averheij@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/18 16:12:48 by averheij      #+#    #+#                 */
-/*   Updated: 2021/01/18 17:36:22 by averheij      ########   odam.nl         */
+/*   Updated: 2021/11/17 13:22:16 by dries               **ee8ee**            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Fixed {
 
 		Fixed &				operator=(Fixed const & rhs);
 	private:
+		int					floatFactor() const;
 		int					_val;
 		static const int	_fractionalBits = 8;
 };

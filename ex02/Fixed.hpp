@@ -6,7 +6,7 @@
 /*   By: averheij <averheij@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/18 16:12:48 by averheij      #+#    #+#                 */
-/*   Updated: 2021/10/05 16:35:44 by dries               **ee8ee**            */
+/*   Updated: 2021/11/17 13:25:03 by dries               **ee8ee**            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ class Fixed {
 		Fixed 					operator--();//Prefix
 		Fixed 					operator--(int);//Postix
 	private:
+		int					floatFactor() const;
 		int					_val;
 		static const int	_fractionalBits = 8;
 };
